@@ -13,7 +13,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "timer.h"
-#include "myTimers.h"
 #include "myConstants.h"
 #include "secrets.h"
 #include "tasterHardware.h"

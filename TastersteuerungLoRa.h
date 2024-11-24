@@ -27,4 +27,6 @@
 #include "LoRa.h"
 #include "loraCmulti.h"
 #include "adcMessung.h"
+#include "TastaturScanner.h"
+
 

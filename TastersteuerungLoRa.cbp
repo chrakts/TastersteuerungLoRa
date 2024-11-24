@@ -130,14 +130,14 @@
 		<Unit filename="../spi/SPI.h" />
 		<Unit filename="../spi/spi_driver.cpp" />
 		<Unit filename="../spi/spi_driver.h" />
-		<Unit filename="../timer/timer.cpp" />
-		<Unit filename="../timer/timer.h" />
 		<Unit filename="../xmegaClocks/xmegaClocks.cpp" />
 		<Unit filename="../xmegaClocks/xmegaClocks.h" />
 		<Unit filename="CommandFunctions.cpp" />
 		<Unit filename="CommandFunctions.h" />
 		<Unit filename="External.h" />
 		<Unit filename="Globals.cpp" />
+		<Unit filename="TastaturScanner.h" />
+		<Unit filename="Tastaturscanner.cpp" />
 		<Unit filename="TastersteuerungLoRa.cpp" />
 		<Unit filename="TastersteuerungLoRa.h" />
 		<Unit filename="adcMessung.cpp" />
@@ -145,8 +145,6 @@
 		<Unit filename="ledHardware.h" />
 		<Unit filename="loraHardware.h" />
 		<Unit filename="myConstants.h" />
-		<Unit filename="myTimers.cpp" />
-		<Unit filename="myTimers.h" />
 		<Unit filename="spiHardware.h" />
 		<Unit filename="tasterHardware.h" />
 		<Unit filename="uartHardware.h" />

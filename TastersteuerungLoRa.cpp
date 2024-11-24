@@ -20,8 +20,8 @@ void setup()
 	COL5SETUP;
   LEDGRUEN_TAST_OFF;
   LEDROT_TAST_OFF;
-	COLUMN_PORT.INT0MASK = 0b11010101;
-	COLUMN_PORT.INTCTRL  = PORT_INT0LVL_MED_gc;
+	//COLUMN_PORT.INT0MASK = 0b11010101;
+	//COLUMN_PORT.INTCTRL  = PORT_INT0LVL_MED_gc;
 
 	LEDBLAU_OFF; LEDROT_OFF; LEDGRUEN_OFF;
   BATTMEASSETUP; BATTMEAS_OFF;
@@ -37,6 +37,11 @@ void setup()
   //LoRa.onReceive(onReceive);
   LoRa_rxMode();
 
+
+  // RTC aufsetzen
+  CLK.RTCCTRL = CLK_RTCSRC_ULP_gc | CLK_RTCEN_bm; // 1kHz ULP
+  setRTC(0);
+
   PMIC_CTRL = PMIC_LOLVLEX_bm | PMIC_HILVLEN_bm | PMIC_MEDLVLEN_bm;
 	sei();
 
@@ -49,7 +54,7 @@ int main(void)
 
 	LEDGRUEN_OFF; LEDROT_OFF; LEDBLAU_OFF;
 	ROW1_OFF; ROW2_OFF; ROW3_OFF;
-	init_mytimer();
+	//init_mytimer();
 
 	for(i=0;i<20;i++)
 	{
@@ -94,29 +99,31 @@ int main(void)
       keyPressed = 255;
     }
 
-    if(processRelaisInfos(&cmulti))
+    if( (processRelaisInfos(&cmulti)) && (TS_Status == TS_INACTIVE) && (((~COLUMN_PORT.IN) & 0b11010101)  == 0))
     {
       LEDBLAU_OFF;
       LEDGRUEN_OFF;
       BATTMEAS_OFF;
       //CLK.RTCCTRL = 0;    // myTimer abschalten
-      //cmulti.sleep();
       LoRa.sleep();
       set_sleep_mode(SLEEP_MODE_PWR_SAVE);
       sleep_enable();
       sleep_cpu();
       sleep_disable();
-      LoRa.onReceive(onReceive);
-      LoRa_rxMode();
-      LoRa_txMode();
-      LEDBLAU_ON;
-      BATTMEAS_ON;
-      //init_mytimer();     // myTimer einschalten
-      //cmulti.wakeup();
+      if(checkTastatur())
+      {
+        LoRa.onReceive(onReceive);
+        LoRa_rxMode();
+        LoRa_txMode();
+        LEDBLAU_ON;
+        BATTMEAS_ON;
+
+      }
     }
 	}
 }
 
+/*
 ISR(PORTC_INT0_vect)
 {
   if(TS_Status == TS_INACTIVE)
@@ -127,4 +134,4 @@ ISR(PORTC_INT0_vect)
     MyTimers[TIMER_TASTATUR_SCANNER].state = TM_START;
     TS_Status++;
   }
-}
+}*/

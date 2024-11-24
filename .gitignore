@@ -38,3 +38,17 @@
 *.depend
 
 *.layout
+
+bin/Release/TastersteuerungLoRa.eep
+
+bin/Release/TastersteuerungLoRa.elf
+
+bin/Release/TastersteuerungLoRa.hex
+
+bin/Release/TastersteuerungLoRa.lock
+
+bin/Release/TastersteuerungLoRa.lss
+
+bin/Release/TastersteuerungLoRa.map
+
+bin/Release/TastersteuerungLoRa.sig
