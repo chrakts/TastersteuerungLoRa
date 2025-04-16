@@ -51,7 +51,7 @@ int main(void)
 {
 	setup();
   uint8_t i;
-
+  uint8_t columnsList[] = COLUMNS_LIST;
 	LEDGRUEN_OFF; LEDROT_OFF; LEDBLAU_OFF;
 	ROW1_OFF; ROW2_OFF; ROW3_OFF;
 	//init_mytimer();
@@ -67,10 +67,15 @@ int main(void)
     if(keyPressed<255)
     {
       uint8_t key = keyPressed % 5;
-      uint8_t row = (keyPressed - key) / 5;
+      uint8_t column = (keyPressed - key) / 5;
 
       char keyFunction, keyJob;
       keyFunction = 'F';
+#ifdef INVERT_ROWS
+      key = 4-key;
+#endif // INVERT_ROWS
+
+      column = columnsList[column];
       switch(key)
       {
         case 0:   // down
@@ -91,7 +96,7 @@ int main(void)
         break;
       }
 
-      loraCmulti.sendCommand(TARGET,keyFunction,'0'+row,keyJob);
+      loraCmulti.sendCommand(TARGET,keyFunction,'0'+column,keyJob);
       sendViaRelay(loraCmulti.get());
       processRelaisInfos(&cmulti);
       loraCmulti.broadcastDouble(doSpannungsMessung(),'S','1','U');
