@@ -53,7 +53,9 @@
 					<Add option="-DPLL=0" />
 					<Add option="-DCLOCK_CALIBRATION=85" />
 					<Add option="-DNODE_STRING=T2" />
-					<Add option="-DTARGET=R0" />
+					<Add option="-DTARGET=R1" />
+					<Add option="-DCOLUMNS_LIST={1,0,2}" />
+					<Add option="-DINVERT_ROWS" />
 					<Add directory="./" />
 				</Compiler>
 				<Linker>

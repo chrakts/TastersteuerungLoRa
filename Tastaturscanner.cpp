@@ -7,7 +7,7 @@ In der Spalte COLx liegt dann ein Null-Pegel an
 #include "TastaturScanner.h"
 #include "ledHardware.h"
 
-#define NUM_ROWS 3 0b00101010
+#define NUM_ROWS 3
 
 bool checkTastatur()
 {
@@ -67,6 +67,7 @@ void TastaturScanner()
     case TS_STOP1:
       ROW1_OFF;
       ROW2_OFF;
+      ROW3_OFF;
       keyPressed = tempKey;
       TS_Status++;
     break;
